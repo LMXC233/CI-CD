@@ -33,7 +33,8 @@ pipeline {
                 // 用 install 而不是 package：把 framework 的 SNAPSHOT 构件
                 // 装进本地 Maven 仓库，业务模块才能引用到
                 // （本地仓库挂载自宿主机，你本机 IDE 也能直接复用）
-                sh 'cd jzo2o-framework && mvn -B clean install -DskipTests'
+                // 注意：聚合 POM 在 jzo2o-parent 子目录里（framework 根目录无 pom）
+                sh 'cd jzo2o-framework/jzo2o-parent && mvn -B clean install -DskipTests'
             }
         }
 
